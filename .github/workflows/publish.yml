@@ -1,0 +1,23 @@
+name: Publish Resource Pack for lgw2
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build_and_release:
+    name: ビルド & リリース
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 見つけたディレクトリからリソースパックの作成
+        run: zip -r rcpve.zip . -x "./git/*" "./.github/*" "./README.md"
+
+      - uses: softprops/action-gh-release@v0.1.14
+        with:
+          tag_name: action-v${{ github.run_number }}
+          files: 'rcpve.zip'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
