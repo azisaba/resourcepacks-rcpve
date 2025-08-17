@@ -1,4 +1,4 @@
-name: Publish Resource Pack for lgw2
+name: Publish Resource Pack for rcpve
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: 見つけたディレクトリからリソースパックの作成
-        run: zip -r rcpve.zip . -x "./git/*" "./.github/*" "./README.md"
+        run: zip -r lgw2.zip . -x ".git/*" ".github/*" "README.md" ".gitignore"
 
       - uses: softprops/action-gh-release@v0.1.14
         with:
